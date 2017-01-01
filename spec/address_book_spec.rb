@@ -69,7 +69,6 @@ require_relative '../models/address_book'
         it "imports the correct number of entries" do
           book.import_from_csv("entries.csv")
           book_size = book.entries.size
-
           expect(book_size).to eq 5
         end
 
@@ -78,8 +77,6 @@ require_relative '../models/address_book'
           entry_one = book.entries[0]
           check_entry(entry_one, "Bill", "555-555-4854", "bill@blocmail.com")
         end
-
-
 
         it "imports the 2nd entry" do
           book.import_from_csv("entries.csv")
@@ -104,6 +101,31 @@ require_relative '../models/address_book'
           entry_five = book.entries[4]
           check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
         end
-        
    end
+
+   describe "#import_from_csv2" do
+      it "imports the correct number of entries from the second csv" do
+        book.import_from_csv("entries_2.csv")
+        book_size = book.entries.size
+        expect(book_size).to eq 3
+      end
+
+      it "imports the 1st entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_one = book.entries[0]
+        check_entry(entry_one, "Billy", "444-444-4444", "billy@blocmail.com")
+      end
+
+      it "imports the 2nd entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_two = book.entries[2]
+        check_entry(entry_two, "Robert", "222-222-2222", "robert@blocmail.com")
+      end
+
+      it "imports the 3rd entry" do
+        book.import_from_csv("entries_2.csv")
+        entry_three = book.entries[1]
+        check_entry(entry_three, "Jenny", "333-333-3333", "jenny@blocmail.com")
+      end
+    end
   end
