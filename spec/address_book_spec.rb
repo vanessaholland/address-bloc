@@ -65,6 +65,17 @@ require_relative '../models/address_book'
        end
      end
 
+     describe "#obliterate" do
+        it "removes all entries from the address book" do
+          book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
+          book.add_entry('Grace Hopper', '555.555.1000', 'rearadmiral@navy.com')
+          expect(book.entries.size).to eq(2)
+
+          book.obliterate
+          expect(book.entries.size).to eq(0)
+        end
+      end
+
      describe "#import_from_csv" do
         it "imports the correct number of entries" do
           book.import_from_csv("entries.csv")

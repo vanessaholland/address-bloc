@@ -29,6 +29,12 @@ class AddressBook
     @entries.delete(delete_entry)
   end
 
+  def obliterate
+    entry_count = @entries.length
+    @entries = []
+    puts "#{entry_count} entries have been deleted"
+  end
+
   def import_from_csv(file_name)
     csv_text = File.read(file_name)
     csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
@@ -42,13 +48,10 @@ class AddressBook
     lower = 0
      upper = entries.length - 1
 
-     # #2
      while lower <= upper
-       # #3
        mid = (lower + upper) / 2
        mid_name = entries[mid].name
 
-       # #4
        if name == mid_name
          return entries[mid]
        elsif name < mid_name
@@ -58,7 +61,6 @@ class AddressBook
        end
      end
 
-     # #5
      return nil
   end
 
